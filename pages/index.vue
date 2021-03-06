@@ -1,5 +1,5 @@
 <template>
-  <h1>NuxtFlix</h1>
+  <div>Home</div>
 </template>
 
 <script>
