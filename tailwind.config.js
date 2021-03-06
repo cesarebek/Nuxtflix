@@ -15,8 +15,27 @@ module.exports = {
     "./nuxt.config.{js,ts}"
   ],
   theme: {
-    extend: {}
+    extend: {
+      colors: {
+        netflixBg: "#141414",
+        netflixNavGrd1: "#060606",
+        netflixNavGrd2: "#131313"
+      },
+      minHeight: {
+        "1/4": "25%",
+        "1/2": "50%",
+        "3/4": "75%",
+        full: "100%"
+      },
+      scale: {
+        "120": "1.2"
+      }
+    }
   },
-  variants: {},
-  plugins: []
+  variants: { scrollbar: ["rounded"] },
+  plugins: [
+    require("@tailwindcss/aspect-ratio"),
+    require("tailwind-scrollbar"),
+    require("tailwindcss-textshadow")
+  ]
 };

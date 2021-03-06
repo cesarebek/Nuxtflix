@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gradient-to-b from-black to-gray-900">
+  <div class="bg-gradient-to-b from-netflixNavGrd1 to-netflixNavGrd2">
     <header
       class="flex justify-between items-center py-5 container mx-auto h-18"
     >
