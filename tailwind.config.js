@@ -33,9 +33,5 @@ module.exports = {
     }
   },
   variants: { scrollbar: ["rounded"] },
-  plugins: [
-    require("@tailwindcss/aspect-ratio"),
-    require("tailwind-scrollbar"),
-    require("tailwindcss-textshadow")
-  ]
+  plugins: [require("tailwind-scrollbar"), require("tailwindcss-textshadow")]
 };
