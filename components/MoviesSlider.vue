@@ -6,6 +6,7 @@
       v-for="movie in movies"
       :key="movie.id"
       :path="movie.poster_path"
+      :id="movie.id"
     />
   </section>
 </template>

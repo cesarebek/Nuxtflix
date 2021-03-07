@@ -33,7 +33,7 @@ export default {
     component: "fa",
     suffix: false,
     icons: {
-      solid: ["fa-rocket"],
+      solid: ["faHeart", "faStar", "faBookmark", "faList"],
       brands: []
     }
   },
