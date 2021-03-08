@@ -8,7 +8,6 @@
         <nav>
           <ul class="flex space-x-5 ">
             <NuxtLink
-              tag="li"
               class="text-white text-sm transform duration-500 hover:text-gray-400 cursor-pointer"
               v-for="nav in navs"
               :key="nav.id"
@@ -19,7 +18,7 @@
           </ul>
         </nav>
       </div>
-      <div class="flex items-center">
+      <div class="flex items-center space-x-2">
         <div class="relative cursor-pointer">
           <input
             v-if="searchOpen"
@@ -45,12 +44,28 @@
             />
           </svg>
         </div>
+        <div
+          v-if="isLogged"
+          @click="logout"
+          class="rounded-full w-8 h-8 bg-white flex items-center justify-center cursor-pointer"
+        >
+          <fa icon="user" />
+        </div>
+        <nuxt-link
+          to="/auth"
+          v-if="!isLogged"
+          class="bg-red-600 text-white px-5 py-1 rounded-sm cursor-pointer"
+        >
+          Login
+        </nuxt-link>
       </div>
     </header>
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   data() {
     return {
@@ -63,6 +78,14 @@ export default {
       searchOpen: false,
       boxInput: ""
     };
+  },
+  methods: {
+    async logout() {
+      await this.$store.dispatch("authentication/logout");
+    }
+  },
+  computed: {
+    ...mapGetters("authentication", ["isLogged"])
   }
 };
 </script>
@@ -74,7 +97,7 @@ export default {
 
 .absoluteSearch {
   position: absolute;
-  top: 0px;
+  top: 0;
   height: 100%;
 }
 </style>

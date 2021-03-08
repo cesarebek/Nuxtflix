@@ -7,7 +7,7 @@ import {
 } from "@/api";
 
 export const actions = {
-  async nuxtServerInit({ commit }, { $axios }) {
+  async nuxtServerInit({ dispatch, commit }, { $axios, app }) {
     //Get Movies
     const resPopular = await $axios.$get(popularMovies());
     const resTopRated = await $axios.$get(topRatedMovies());
@@ -24,5 +24,9 @@ export const actions = {
     commit("actors/setActors", {
       popular: resActors.results
     });
+    if (app.$cookies.get("token")) {
+      const token = app.$cookies.get("token");
+      dispatch("authentication/tryLogin", token);
+    }
   }
 };

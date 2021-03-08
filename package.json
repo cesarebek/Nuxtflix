@@ -11,8 +11,12 @@
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.34",
     "@nuxtjs/axios": "^5.12.2",
+    "@tailwindcss/forms": "^0.2.1",
+    "cookie-universal-nuxt": "^2.1.4",
     "core-js": "^3.6.5",
+    "js-cookie": "^2.2.1",
     "nuxt": "^2.14.6",
+    "validator": "^13.5.2",
     "vueperslides": "^2.13.0"
   },
   "devDependencies": {

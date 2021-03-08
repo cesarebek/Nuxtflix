@@ -16,7 +16,7 @@ export default {
   css: ["~/assets/styles/tailwind.css"],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: [],
+  plugins: ["~/plugins/cookie.js"],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
@@ -33,7 +33,14 @@ export default {
     component: "fa",
     suffix: false,
     icons: {
-      solid: ["faHeart", "faStar", "faBookmark", "faList"],
+      solid: [
+        "faHeart",
+        "faStar",
+        "faBookmark",
+        "faList",
+        "faUser",
+        "faSearch"
+      ],
       brands: []
     }
   },
@@ -41,12 +48,18 @@ export default {
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
     // https://go.nuxtjs.dev/axios
-    "@nuxtjs/axios"
+    "@nuxtjs/axios",
+    "cookie-universal-nuxt"
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {
     baseURL: "https://api.themoviedb.org"
+    // headers: {
+    //   common: {
+    //     authorization: `Bearer ${process.env.TMDB_KEY}`
+    //   }
+    // }
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)

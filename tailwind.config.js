@@ -21,7 +21,11 @@ module.exports = {
         netflixNavGrd1: "#060606",
         netflixNavGrd2: "#131313",
         detailsGrad1: "rgba(14, 14, 14, 0.95)",
-        detailsGrad2: "rgba(111, 106, 111, 0.64)"
+        detailsGrad2: "rgba(111, 106, 111, 0.64)",
+        red: {
+          600: "#E50914"
+        },
+        gray700: "#333333"
       },
       minHeight: {
         "1/4": "25%",
@@ -41,5 +45,9 @@ module.exports = {
     }
   },
   variants: { scrollbar: ["rounded"] },
-  plugins: [require("tailwind-scrollbar"), require("tailwindcss-textshadow")]
+  plugins: [
+    require("tailwind-scrollbar"),
+    require("tailwindcss-textshadow"),
+    require("@tailwindcss/forms")
+  ]
 };
