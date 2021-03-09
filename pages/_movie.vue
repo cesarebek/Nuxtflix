@@ -49,6 +49,13 @@
                   <fa :icon="userTool.icon" />
                 </button>
               </div>
+              <button
+                @click="openTrailer = !openTrailer"
+                class="font-bold p-1 transform duration-300 hover:scale-105"
+              >
+                <fa icon="play" class="mr-1" />
+                Play Trailer
+              </button>
             </div>
             <div>
               <h2 class="text-xl md:text-2xl font-bold ">Overview</h2>
@@ -58,32 +65,59 @@
         </section>
       </div>
     </div>
-    <VideoSection v-if="videos.results" :videos="videos" />
+    <main class="divide-y px-5">
+      <section class="container mx-auto py-10">
+        <p class="text-3xl text-white font-bold mb-3">Info</p>
+        <GenericInfo
+          :id="id"
+          :status="details.status"
+          :origLang="details.original_language"
+          :revenue="details.revenue"
+        />
+      </section>
+      <section class="container mx-auto py-10">
+        <p class="text-3xl text-white font-bold mb-3">Cast</p>
+        <MovieCredits :id="id" />
+      </section>
+
+      <section class="container mx-auto py-10">
+        <p class="text-3xl text-white font-bold mb-3">You may also like...</p>
+        <MovieRecommendations :id="id" />
+      </section>
+    </main>
   </div>
 </template>
 
 <script>
 import { movieDetails, movieVideos } from "~/api";
-import VideoSection from "@/components/detailsPage/videoSection";
+import VideoSection from "@/components/movieDetails/VideoSection";
+import MovieCredits from "@/components/movieDetails/MovieCredits";
+import MovieRecommendations from "~/components/movieDetails/MovieRecommendations.vue";
+import GenericInfo from "~/components/movieDetails/GenericInfo.vue";
+
 export default {
-  components: { VideoSection },
+  components: { VideoSection, MovieCredits, MovieRecommendations, GenericInfo },
   data() {
     return {
       userTools: [
         { id: 0, icon: "list" },
-        { id: 0, icon: "heart" },
-        { id: 0, icon: "bookmark" },
-        { id: 0, icon: "heart" }
-      ]
+        { id: 1, icon: "heart" },
+        { id: 2, icon: "bookmark" },
+        { id: 3, icon: "heart" }
+      ],
+      openTrailer: false
     };
   },
   async asyncData({ $axios, params }) {
     try {
-      console.log(params.movie);
-      const details = await $axios.$get(movieDetails(params.movie));
-      const videos = await $axios.$get(movieVideos(params.movie));
+      const id = params.movie;
+      const details = await $axios.$get(movieDetails(id));
+      const videos = await $axios.$get(movieVideos(id));
+
       return { details, videos };
-    } catch (e) {}
+    } catch (e) {
+      console.log(e);
+    }
   },
   computed: {
     coverUrl() {
@@ -94,6 +128,9 @@ export default {
     },
     release() {
       return this.details.release_date.split("-")[0];
+    },
+    id() {
+      return this.$route.params.movie;
     }
   }
 };

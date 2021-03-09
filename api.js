@@ -37,6 +37,15 @@ export const nowPlayingMovies = () =>
 export const movieDetails = id => `/3/movie/${id}?api_key=${key}`;
 //Videos that have been added to a movie (YT)
 export const movieVideos = id => `/3/movie/${id}/videos?api_key=${key}`;
+//Movie Credits by ID
+export const movieCredits = id => `/3/movie/${id}/credits?api_key=${key}`;
+//Movie Recommendations by ID
+export const movieReccomendations = id =>
+  `/3/movie/${id}/recommendations?api_key=${key}&page=1`;
+//Movie Socials by ID
+export const movieSocials = id => `/3/movie/${id}/external_ids?api_key=${key}`;
+//Movie Keywords by ID
+export const movieKeywords = id => `/3/movie/${id}/keywords?api_key=${key}`;
 
 //
 //**** Actors **** //

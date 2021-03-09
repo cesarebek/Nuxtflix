@@ -33,14 +33,7 @@ export default {
     component: "fa",
     suffix: false,
     icons: {
-      solid: [
-        "faHeart",
-        "faStar",
-        "faBookmark",
-        "faList",
-        "faUser",
-        "faSearch"
-      ],
+      solid: ["faHeart", "faStar", "faBookmark", "faList", "faUser", "faPlay"],
       brands: []
     }
   },

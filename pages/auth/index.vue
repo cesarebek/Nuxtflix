@@ -35,7 +35,6 @@
             @blur="validatePassword"
             type="password"
             v-model="password"
-            id="password"
             placeholder="Password"
           />
           <p
