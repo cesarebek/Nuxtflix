@@ -8,6 +8,7 @@
         <nav>
           <ul class="flex space-x-5 ">
             <NuxtLink
+              @click="boxInput = ''"
               class="text-white text-sm transform duration-500 hover:text-gray-400 cursor-pointer"
               v-for="nav in navs"
               :key="nav.id"
@@ -22,10 +23,10 @@
         <div class="relative cursor-pointer">
           <input
             v-if="searchOpen"
-            v-model="boxInput"
+            v-model.trim="boxInput"
             type="text"
             class="w-full h-8 bg-gray-900 border border-white focus:outline-none text-white text-sm pl-8 py-2 rounded"
-            placeholder="Titoli, Persone, Generi"
+            placeholder="Movies, TV Shows, Authors"
           />
           <svg
             @click="searchOpen = !searchOpen"
@@ -71,9 +72,9 @@ export default {
     return {
       navs: [
         { id: 0, name: "Home", slug: "/" },
-        { id: 1, name: "Serie TV", slug: "/series" },
-        { id: 2, name: "Film", slug: "/films" },
-        { id: 3, name: "Nuovi e Popolari", slug: "/lastest" }
+        { id: 1, name: "TV Show", slug: "/series" },
+        { id: 2, name: "Movies", slug: "/movies" },
+        { id: 3, name: "Actors", slug: "/actors" }
       ],
       searchOpen: false,
       boxInput: ""
@@ -82,6 +83,18 @@ export default {
   methods: {
     async logout() {
       await this.$store.dispatch("authentication/logout");
+    }
+  },
+  watch: {
+    boxInput() {
+      if (this.boxInput !== "") {
+        this.$router.push({
+          path: "/browse",
+          query: { q: this.boxInput }
+        });
+      } else {
+        this.$router.push("/");
+      }
     }
   },
   computed: {

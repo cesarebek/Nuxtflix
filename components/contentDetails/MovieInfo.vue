@@ -1,6 +1,7 @@
 <template>
   <section class="grid grid-cols-2 sm:grid-cols-3">
-    <div class="text-white">
+    <p v-if="$fetchState.pending"></p>
+    <div v-else class="text-white">
       <p class="font-semibold text-xl mb-2">Social</p>
       <div class="flex flex-col space-y-2">
         <span
@@ -50,9 +51,9 @@
       <div class="space-y-2">
         <p
           v-for="keyword in keywords.keywords"
-          @click="searchByKeyword(keyword)"
+          @click="searchByKeyword(keyword.name)"
           :key="keyword.id"
-          class="bg-gray-600 text-gray-200 inline-block p-1 rounded-md font-medium mr-2 "
+          class="bg-gray-600 text-gray-200 inline-block p-1 rounded-md font-medium mr-2 cursor-pointer"
         >
           {{ keyword.name }}
         </p>
@@ -93,12 +94,15 @@ export default {
     };
   },
   async fetch() {
-    this.socials = await this.$axios.$get(movieSocials(this.id));
-    this.keywords = await this.$axios.$get(movieKeywords(this.id));
+    this.socials = await this.$axios.$get(movieSocials("movie", this.id));
+    this.keywords = await this.$axios.$get(movieKeywords("movie", this.id));
   },
   methods: {
-    searchByKeyword(id) {
-      this.$router.push(`/browse/${id}`);
+    searchByKeyword(keyword) {
+      this.$router.push({
+        path: "/browse",
+        query: { q: keyword }
+      });
     }
   }
 };

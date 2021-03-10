@@ -42,6 +42,10 @@ export default {
     id: {
       type: String,
       required: true
+    },
+    type: {
+      type: String,
+      required: true
     }
   },
   data() {
@@ -52,7 +56,7 @@ export default {
   },
   async fetch() {
     try {
-      this.credits = await this.$axios.$get(movieCredits(this.id));
+      this.credits = await this.$axios.$get(movieCredits(this.type, this.id));
     } catch (e) {
       console.log(e);
     }

@@ -25,7 +25,7 @@
           class="py-2 px-1 flex flex-auto justify-between text-gray-200 bg-gray-900"
         >
           <p class="text-shadow-md text-xs  font-medium">
-            {{ movie.title }}
+            {{ movie.title || movie.name }}
           </p>
           <p class="text-shadow-md text-xs font-light ml-2">
             {{ movie.vote_average * 10 }}%
@@ -45,6 +45,10 @@ export default {
     id: {
       type: String,
       required: true
+    },
+    type: {
+      type: String,
+      required: true
     }
   },
   data() {
@@ -55,14 +59,16 @@ export default {
   },
   async fetch() {
     try {
-      this.movies = await this.$axios.$get(movieReccomendations(this.id));
+      this.movies = await this.$axios.$get(
+        movieReccomendations(this.type, this.id)
+      );
     } catch (e) {
       console.log(e);
     }
   },
   methods: {
     showDetails(id) {
-      this.$router.push(`/${id}`);
+      this.$router.push({ path: `/series/${id}`, query: { type: this.type } });
     }
   }
 };

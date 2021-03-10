@@ -8,10 +8,10 @@
 </template>
 
 <script>
+import fallImage from "@/assets/images/cover-not-found.png";
 export default {
   props: {
     path: {
-      type: String,
       required: true
     },
     id: {
@@ -20,12 +20,17 @@ export default {
   },
   computed: {
     coverPath() {
-      return `https://image.tmdb.org/t/p/w500${this.path}`;
+      return this.path
+        ? `https://image.tmdb.org/t/p/w500${this.path}`
+        : fallImage;
     }
   },
   methods: {
     showDetails() {
-      this.$router.push(`/${this.id}`);
+      this.$router.push({
+        path: `/movies/${this.id}`,
+        query: { type: "movie" }
+      });
     }
   }
 };
