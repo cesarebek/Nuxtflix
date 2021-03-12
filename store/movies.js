@@ -1,12 +1,19 @@
 //State is a function to avoid unwanted state use in DOM
 export const state = () => ({
   popularMovies: [],
+  popularSeries: [],
   topRatedMovies: [],
   upcomingMovies: [],
   nowPlayingMovies: []
 });
 
 export const getters = {
+  popularMovies(state) {
+    return state.popularMovies;
+  },
+  popularSeries(state) {
+    return state.popularSeries;
+  },
   popularMovies(state) {
     return state.popularMovies;
   },
@@ -23,7 +30,8 @@ export const getters = {
 
 export const mutations = {
   setMovies(state, movies) {
-    state.popularMovies = movies.popular;
+    state.popularMovies = movies.popularMovies;
+    state.popularSeries = movies.popularSeries;
     state.topRatedMovies = movies.topRated;
     state.upcomingMovies = movies.upcoming;
     state.nowPlayingMovies = movies.nowPlaying;

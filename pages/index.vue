@@ -14,40 +14,19 @@
         </slider>
       </section>
       <section class="container mx-auto">
-        <h1>Most Rated Movies</h1>
+        <h1>Popular Tv Shows</h1>
         <slider>
-          <MovieCard
-            v-for="movie in topRatedMovies"
-            :key="movie.id"
-            :path="movie.poster_path"
-            :id="movie.id"
+          <SerieCard
+            v-for="serie in popularSeries"
+            :key="serie.id"
+            :path="serie.poster_path"
+            :id="serie.id"
           />
         </slider>
       </section>
-      <section class="container mx-auto ">
-        <h1>Upcoming Movies</h1>
-        <slider>
-          <MovieCard
-            v-for="movie in upcomingMovies"
-            :key="movie.id"
-            :path="movie.poster_path"
-            :id="movie.id"
-          />
-        </slider>
-      </section>
-      <section class="container mx-auto ">
-        <h1>Playing in Theater</h1>
-        <slider>
-          <MovieCard
-            v-for="movie in nowPlayingMovies"
-            :key="movie.id"
-            :path="movie.poster_path"
-            :id="movie.id"
-          />
-        </slider>
-      </section>
+
       <section class="container mx-auto pb-12">
-        <h1>Gli attori del momento</h1>
+        <h1>Actors of the moment</h1>
         <slider>
           <ActorCard
             v-for="actor in popularActors"
@@ -71,7 +50,7 @@ export default {
   computed: {
     ...mapGetters("movies", [
       "popularMovies",
-      "topRatedMovies",
+      "popularSeries",
       "upcomingMovies",
       "nowPlayingMovies"
     ]),

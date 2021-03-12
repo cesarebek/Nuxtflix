@@ -29,31 +29,35 @@
 
     <!-- Searched List -->
     <div v-else class="container mx-auto ">
-      <div class="flex pt-10 pb-5 text-lg">
-        <p class="text-gray-500 flex-shrink-0 mr-5">
-          Take a look at titles related at:
-        </p>
-        <div class="flex flex-wrap">
-          <p
-            class="text-gray-300 font-medium cursor-pointer mx-2 hover:text-red-600"
-            v-for="keyword in keywords.slice(0, 10)"
-            @click="setSuggestionId(keyword.id)"
-            :key="keyword.id"
-          >
-            {{ keyword.name }}
+      <div class="hidden sm:block">
+        <div class="flex pt-10 pb-5 text-lg">
+          <p class="text-gray-500 flex-shrink-0 mr-5">
+            Take a look at titles related at:
           </p>
+          <div class="flex flex-wrap">
+            <p
+              class="text-gray-300 font-medium cursor-pointer mx-2 hover:text-red-600"
+              v-for="keyword in keywords.slice(0, 10)"
+              @click="setSuggestionId(keyword.id)"
+              :key="keyword.id"
+            >
+              {{ keyword.name }}
+            </p>
+          </div>
         </div>
       </div>
 
-      <div class="grid sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+      <div
+        class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"
+      >
         <div
           @click="showDetails(file.media_type, file.id)"
-          class="rounded-md overflow-hidden relative bg-gray-800 h-full w-full"
+          class="rounded-md overflow-hidden relative bg-gray-800 mx-5"
           v-for="file in data"
           :key="file.id"
         >
           <img
-            class="cursor-pointer"
+            class="cursor-pointer w-full"
             :src="coverUrl(file.poster_path, file.profile_path)"
             alt="cover"
           />

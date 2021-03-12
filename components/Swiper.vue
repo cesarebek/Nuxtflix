@@ -24,6 +24,6 @@ export default {
 
 <style lang="postcss" scoped>
 .vueperslide__title {
-  @apply text-white text-5xl font-semibold text-shadow-xl;
+  @apply text-white text-2xl  font-semibold text-shadow-xl;
 }
 </style>

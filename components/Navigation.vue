@@ -3,10 +3,12 @@
     <header
       class="flex justify-between items-center py-5 container mx-auto h-18 px-4 sm:px-0"
     >
-      <div class="flex space-x-10">
-        <img class="h-6" src="@/assets/images/netflix.svg" alt="logo" />
-        <nav>
-          <ul class="flex space-x-5 ">
+      <div class="flex space-x-10 flex-shrink-0">
+        <nuxt-link to="/">
+          <img class="h-6 " src="@/assets/images/netflix.svg" alt="logo" />
+        </nuxt-link>
+        <nav class="hidden md:block">
+          <ul class="flex space-x-5">
             <NuxtLink
               @click="boxInput = ''"
               class="text-white text-sm transform duration-500 hover:text-gray-400 cursor-pointer"
@@ -52,13 +54,14 @@
         >
           <fa icon="user" />
         </div>
-        <nuxt-link
+        <NuxtLink
           to="/auth"
           v-if="!isLogged"
-          class="bg-red-600 text-white px-5 py-1 rounded-sm cursor-pointer"
+          class="bg-red-600 text-white px-5 py-1 rounded-sm cursor-pointer hidden md:block"
         >
           Login
-        </nuxt-link>
+        </NuxtLink>
+        <MobileNavigation :navs="navs" />
       </div>
     </header>
   </div>
@@ -72,7 +75,12 @@ export default {
     return {
       navs: [
         { id: 0, name: "Home", slug: "/" },
-        { id: 1, name: "TV Show", slug: "/series" },
+        {
+          id: 1,
+          name: "TV Show",
+          slug: "/series",
+          query: ["popular", "airing-today", "on-the-air", "top-rated"]
+        },
         { id: 2, name: "Movies", slug: "/movies" },
         { id: 3, name: "Actors", slug: "/actors" }
       ],

@@ -24,32 +24,30 @@ export const accountDetails = session_id =>
 //
 //**** Movies & TV-Series lists **** //
 //
-export const popularMovies = () => `/3/movie/popular?api_key=${key}&page=1`;
-export const popularSeries = () => `/3/tv/popular?api_key=${key}&page=1`;
-export const topRatedMovies = () => `/3/movie/top_rated?api_key=${key}&page=1`;
-export const upcomingMovies = () => `/3/movie/upcoming?api_key=${key}&page=1`;
-export const nowPlayingMovies = () =>
-  `/3/movie/now_playing?api_key=${key}&page=1`;
+export const popularTitles = media => `/3/${media}/popular?api_key=${key}`;
+export const topRatedMovies = () => `/3/movie/top_rated?api_key=${key}`;
+export const upcomingMovies = () => `/3/movie/upcoming?api_key=${key}`;
+export const nowPlayingMovies = () => `/3/movie/now_playing?api_key=${key}`;
 
 //
-//**** Movie Details **** //
+//**** Movie || Tv Show Details **** //
 //
-//Movie Details by ID
+//Movie || Tv Show Details by ID
 export const movieDetails = (media_type, id) =>
   `/3/${media_type}/${id}?api_key=${key}`;
-//Videos that have been added to a movie (YT)
+//Videos that have been added to a movie || Tv Show (YT)
 export const movieVideos = (media_type, id) =>
   `/3/${media_type}/${id}/videos?api_key=${key}`;
-//Movie Credits by ID
+//Movie || Tv Show Credits by ID
 export const movieCredits = (media_type, id) =>
   `/3/${media_type}/${id}/credits?api_key=${key}`;
-//Movie Recommendations by ID
+//Movie || Tv Show Recommendations by ID
 export const movieReccomendations = (media_type, id) =>
   `/3/${media_type}/${id}/recommendations?api_key=${key}&page=1`;
-//Movie Socials by ID
+//Movie || Tv Show Socials by ID
 export const movieSocials = (media_type, id) =>
   `/3/${media_type}/${id}/external_ids?api_key=${key}`;
-//Movie Keywords by ID
+//Movie || Tv Show Keywords by ID
 export const movieKeywords = (media_type, id) =>
   `/3/${media_type}/${id}/keywords?api_key=${key}`;
 
@@ -57,13 +55,17 @@ export const movieKeywords = (media_type, id) =>
 //**** Actors **** //
 //
 //Popular Actors list
-export const popularActors = () => `/3/person/popular?api_key=${key}&page=1`;
+export const popularActors = page =>
+  `/3/person/popular?api_key=${key}&page=${page}`;
 //Actor Details by ID
 export const actorDetails = id => `/3/person/${id}?api_key=${key}`;
 //Actor Movies by ID
 export const actorMovies = id => `/3/person/${id}/movie_credits?api_key=${key}`;
 //Actor TV Shows by ID
 export const actorSeries = id => `/3/person/${id}/tv_credits?api_key=${key}`;
+//Combined Actor Credits by ID
+export const actorCombinedCredits = id =>
+  `/3/person/${id}/combined_credits?api_key=${key}`;
 
 //
 //**** Custom Search **** //

@@ -1,6 +1,5 @@
 export const state = () => ({
-  popularActors: [],
-  specificActor: null
+  popularActors: []
 });
 
 export const getters = {

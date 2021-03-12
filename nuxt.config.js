@@ -3,7 +3,7 @@ require("dotenv").config();
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    title: "nuxtflix",
+    title: "Nuxtflix",
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
@@ -33,7 +33,16 @@ export default {
     component: "fa",
     suffix: false,
     icons: {
-      solid: ["faHeart", "faStar", "faBookmark", "faList", "faUser", "faPlay"],
+      solid: [
+        "faHeart",
+        "faStar",
+        "faBookmark",
+        "faList",
+        "faUser",
+        "faPlay",
+        "faBars",
+        "faTimes"
+      ],
       brands: []
     }
   },
