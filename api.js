@@ -25,6 +25,7 @@ export const accountDetails = session_id =>
 //**** Movies & TV-Series lists **** //
 //
 export const popularMovies = () => `/3/movie/popular?api_key=${key}&page=1`;
+export const popularSeries = () => `/3/tv/popular?api_key=${key}&page=1`;
 export const topRatedMovies = () => `/3/movie/top_rated?api_key=${key}&page=1`;
 export const upcomingMovies = () => `/3/movie/upcoming?api_key=${key}&page=1`;
 export const nowPlayingMovies = () =>
@@ -58,11 +59,20 @@ export const movieKeywords = (media_type, id) =>
 //Popular Actors list
 export const popularActors = () => `/3/person/popular?api_key=${key}&page=1`;
 //Actor Details by ID
-export const specificActor = id => `/3/person/${id}?api_key=${key}`;
+export const actorDetails = id => `/3/person/${id}?api_key=${key}`;
+//Actor Movies by ID
+export const actorMovies = id => `/3/person/${id}/movie_credits?api_key=${key}`;
+//Actor TV Shows by ID
+export const actorSeries = id => `/3/person/${id}/tv_credits?api_key=${key}`;
 
 //
 //**** Custom Search **** //
 //
 //Searches for Movies - TV Shows - Actors
-export const multipleSearch = query =>
-  `/3/search/multi?api_key=${key}&query=${query}&page=1`;
+export const multipleSearch = (query, page) =>
+  `/3/search/multi?api_key=${key}&query=${query}&page=${page}`;
+export const queryKeywordBySearch = query =>
+  `/3/search/keyword?api_key=${key}&query=${query}&page=1`;
+//Discover by Keyword search
+export const titlesByKeyword = (media_type, keyword, page) =>
+  `3/discover/${media_type}?api_key=${key}&sort_by=popularity.desc&page=${page}&with_keywords=${keyword}`;

@@ -1,7 +1,7 @@
 <template>
   <div class="bg-gradient-to-b from-netflixNavGrd1 to-netflixNavGrd2">
     <header
-      class="flex justify-between items-center py-5 container mx-auto h-18"
+      class="flex justify-between items-center py-5 container mx-auto h-18 px-4 sm:px-0"
     >
       <div class="flex space-x-10">
         <img class="h-6" src="@/assets/images/netflix.svg" alt="logo" />

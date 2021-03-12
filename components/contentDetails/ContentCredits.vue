@@ -1,13 +1,12 @@
 <template>
   <main class="container mx-auto">
-    <section
-      class="mx-3 md:mx-0 space-x-3 flex py-2 scrollbar-thin overflow-x-scroll scrollbar-thumb-gray-400 scrollbar-track-netflixBg dark:scrollbar-thumb-blue-100 dark:scrollbar-track-gray-700"
-    >
+    <slider>
       <p v-if="$fetchState.pending"></p>
       <!-- Actors -->
       <div
         v-else
         v-for="actor in credits.cast"
+        @click="showDetails(actor.id)"
         :key="actor.id"
         class="w-1/3 sm:w-1/4 md:w-1/6 lg:w-1/8 xl:w-1/10 flex flex-col shadow-md flex-shrink-0 overflow-hidden rounded-md cursor-pointer"
       >
@@ -30,13 +29,15 @@
           </p>
         </div>
       </div>
-    </section>
+    </slider>
   </main>
 </template>
 
 <script>
 import { movieCredits } from "@/api";
 import avatar from "@/assets/images/avatar.png";
+import Slider from "@/components/slot_components/Slider";
+
 export default {
   props: {
     id: {
@@ -48,6 +49,7 @@ export default {
       required: true
     }
   },
+  components: { Slider },
   data() {
     return {
       credits: [],
@@ -61,6 +63,10 @@ export default {
       console.log(e);
     }
   },
-  computed: {}
+  methods: {
+    showDetails(id) {
+      this.$router.push({ path: `/actors/${id}` });
+    }
+  }
 };
 </script>

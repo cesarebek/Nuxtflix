@@ -9,7 +9,9 @@
       <section
         class="container mx-auto flex flex-col sm:flex-row items-center py-4"
       >
-        <div class="w-1/2 rounded-xl overflow-hidden shadow-2xl">
+        <div
+          class="w-1/2 md:w-1/3 lg:w-1/4 flex-shrink-0 rounded-xl overflow-hidden shadow-2xl"
+        >
           <img class="w-full" :src="coverUrl" alt="cover" />
         </div>
         <div class="px-5 text-white text-shadow-lg">

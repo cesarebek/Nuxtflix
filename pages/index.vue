@@ -3,24 +3,60 @@
     <Swiper />
     <main class="text-white font-semibold text-lg mt-12">
       <section class="container mx-auto ">
-        <h1>I film del momento</h1>
-        <MoviesSlider :movies="popularMovies" />
+        <h1>Popular Movies</h1>
+        <slider>
+          <MovieCard
+            v-for="movie in popularMovies"
+            :key="movie.id"
+            :path="movie.poster_path"
+            :id="movie.id"
+          />
+        </slider>
       </section>
       <section class="container mx-auto">
-        <h1>I più votati</h1>
-        <MoviesSlider :movies="topRatedMovies" />
+        <h1>Most Rated Movies</h1>
+        <slider>
+          <MovieCard
+            v-for="movie in topRatedMovies"
+            :key="movie.id"
+            :path="movie.poster_path"
+            :id="movie.id"
+          />
+        </slider>
       </section>
       <section class="container mx-auto ">
-        <h1>Prossimamente sugli schermi</h1>
-        <MoviesSlider :movies="upcomingMovies" />
+        <h1>Upcoming Movies</h1>
+        <slider>
+          <MovieCard
+            v-for="movie in upcomingMovies"
+            :key="movie.id"
+            :path="movie.poster_path"
+            :id="movie.id"
+          />
+        </slider>
       </section>
       <section class="container mx-auto ">
-        <h1>In sala</h1>
-        <MoviesSlider :movies="nowPlayingMovies" />
+        <h1>Playing in Theater</h1>
+        <slider>
+          <MovieCard
+            v-for="movie in nowPlayingMovies"
+            :key="movie.id"
+            :path="movie.poster_path"
+            :id="movie.id"
+          />
+        </slider>
       </section>
       <section class="container mx-auto pb-12">
         <h1>Gli attori del momento</h1>
-        <ActorsSlider :actors="popularActors" />
+        <slider>
+          <ActorCard
+            v-for="actor in popularActors"
+            :key="actor.id"
+            :path="actor.profile_path"
+            :name="actor.name"
+            :id="actor.id"
+          />
+        </slider>
       </section>
     </main>
   </div>
@@ -28,7 +64,10 @@
 
 <script>
 import { mapGetters } from "vuex";
+import Slider from "@/components/slot_components/Slider";
+
 export default {
+  components: { Slider },
   computed: {
     ...mapGetters("movies", [
       "popularMovies",

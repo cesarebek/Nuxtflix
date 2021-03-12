@@ -1,5 +1,6 @@
 <template>
   <div
+    @click="showDetails"
     class="flex justify-center w-1/2 sm:w-1/3 shadow-md md:w-1/4 lg:w-1/6 relative flex-shrink-0 overflow-hidden rounded-md my-3 cursor-pointer"
   >
     <img class="h-full" :src="coverPath" alt="cover" />
@@ -19,11 +20,20 @@ export default {
     name: {
       type: String,
       required: true
+    },
+    id: {
+      type: Number,
+      required: true
     }
   },
   computed: {
     coverPath() {
       return `https://image.tmdb.org/t/p/w500${this.path}`;
+    }
+  },
+  methods: {
+    showDetails() {
+      this.$router.push(`/actors/${this.id}`);
     }
   }
 };

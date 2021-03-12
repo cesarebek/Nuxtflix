@@ -99,9 +99,10 @@ export default {
   },
   methods: {
     searchByKeyword(keyword) {
+      //DISPATCH SET SEARCH KEYWORD
       this.$router.push({
         path: "/browse",
-        query: { q: keyword }
+        query: { suggestedId: keyword }
       });
     }
   }
