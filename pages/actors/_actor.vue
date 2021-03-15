@@ -54,7 +54,7 @@
           </h1>
 
           <h2 class="text-xl font-medium mb-1">Biography</h2>
-          <div v-if="!actor.biography === ''">
+          <div v-if="actor.biography !== ''">
             <p class="italic mb-5">From Wikipedia, the free encyclopedia</p>
             <p>{{ actor.biography }}</p>
           </div>

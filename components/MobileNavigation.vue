@@ -13,7 +13,7 @@
         @click="toggle"
       >
         <NuxtLink
-          class="text-white text-xl font-light transform duration-500 hover:text-gray-400 cursor-pointer"
+          class="text-white text-xl font-light transform duration-500 cursor-pointer hover:text-red-600"
           v-for="nav in navs"
           :key="nav.id"
           :to="nav.slug"
@@ -28,8 +28,8 @@
           Login
         </NuxtLink>
         <div
-          @click="toggle"
-          class="w-10 h-10 z-10 rounded-full bg-gray-400 flex items-center justify-center cursor-pointer absolute"
+          @click.="toggle"
+          class="w-10 h-10 z-30 rounded-full bg-gray-400 flex items-center justify-center cursor-pointer absolute transform duration-200 hover:bg-gray-500"
           style="bottom: 2rem"
         >
           <fa icon="times" class="text-netflixBg" />
@@ -58,6 +58,7 @@ export default {
   },
   methods: {
     toggle() {
+      console.log("hey");
       this.menuOpen = !this.menuOpen;
     }
   }

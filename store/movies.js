@@ -32,9 +32,6 @@ export const mutations = {
   setMovies(state, movies) {
     state.popularMovies = movies.popularMovies;
     state.popularSeries = movies.popularSeries;
-    state.topRatedMovies = movies.topRated;
-    state.upcomingMovies = movies.upcoming;
-    state.nowPlayingMovies = movies.nowPlaying;
   }
 };
 

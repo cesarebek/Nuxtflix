@@ -25,9 +25,17 @@ export const accountDetails = session_id =>
 //**** Movies & TV-Series lists **** //
 //
 export const popularTitles = media => `/3/${media}/popular?api_key=${key}`;
-export const topRatedMovies = () => `/3/movie/top_rated?api_key=${key}`;
-export const upcomingMovies = () => `/3/movie/upcoming?api_key=${key}`;
+export const topRatedTitles = media => `/3/${media}/top_rated?api_key=${key}`;
+//Now Playing Movies at Theater
 export const nowPlayingMovies = () => `/3/movie/now_playing?api_key=${key}`;
+//Airing Today Tv Shows
+export const airingSeries = () =>
+  `/3/tv/airing_today?api_key=${key}&region=ISO%203166-2%3AIT`;
+//Titles Genres
+export const titlesGenres = media => `/3/genre/${media}/list?api_key=${key}`;
+//Filter by Genre ID
+export const searchByGenre = (media, page, genre) =>
+  `/3/discover/${media}?api_key=${key}&sort_by=popularity.desc&page=${page}&with_genres=${genre}`;
 
 //
 //**** Movie || Tv Show Details **** //

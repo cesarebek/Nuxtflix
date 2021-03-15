@@ -5,17 +5,19 @@
       v-if="openTrailer"
       :videos="videos"
     />
-    <MainBanner :details="details" @click="$emit('open-trailer')" />
+    <MainBanner :details="details" @open-trailer="openTrailer = !openTrailer" />
     <main class="divide-y px-5">
-      <section class="container mx-auto py-10">
-        <p class="text-3xl text-white font-bold mb-3">Cast</p>
-        <ContentCredits :type="type" :id="id" />
-      </section>
+      <client-only>
+        <section class="container mx-auto py-10">
+          <p class="text-3xl text-white font-bold mb-3">Cast</p>
+          <ContentCredits :type="type" :id="id" />
+        </section>
 
-      <section class="container mx-auto py-10">
-        <p class="text-3xl text-white font-bold mb-3">You may also like...</p>
-        <ContentRecommendations :type="type" :id="id" />
-      </section>
+        <section class="container mx-auto py-10">
+          <p class="text-3xl text-white font-bold mb-3">You may also like...</p>
+          <ContentRecommendations :type="type" :id="id" />
+        </section>
+      </client-only>
     </main>
   </div>
 </template>
