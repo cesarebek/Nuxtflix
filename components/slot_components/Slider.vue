@@ -4,7 +4,7 @@
       <slot name="title"></slot>
     </h1>
     <div
-      class="flex py-1 px-2 mb-10 scrollbar-thin overflow-x-scroll space-x-2 scrollbar-thumb-gray-400 scrollbar-track-netflixBg dark:scrollbar-thumb-blue-100 dark:scrollbar-track-gray-700"
+      class="flex py-4 px-2 scrollbar-thin overflow-x-scroll space-x-2 scrollbar-thumb-gray-400 scrollbar-track-netflixBg dark:scrollbar-thumb-blue-100 dark:scrollbar-track-gray-700"
     >
       <slot></slot>
     </div>

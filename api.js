@@ -32,6 +32,15 @@ export const addWatchlist = (account_id, token) =>
 //Rate
 export const rateTitle = (media, title_id, token) =>
   `/3/${media}/${title_id}/rating?api_key=${key}&session_id=${token}`;
+//Get Favorite Titles
+export const favoriteTitles = (account_id, media, token) =>
+  `/3/account/${account_id}/favorite/${media}?api_key=${key}&session_id=${token}&sort_by=created_at.asc&page=1`;
+//Get Watchlist Titles
+export const watchlist = (account_id, media, token) =>
+  `/3/account/${account_id}/watchlist/${media}?api_key=${key}&session_id=${token}&sort_by=created_at.asc&page=1`;
+//Get Rating Titles
+export const titleRating = (account_id, media, token) =>
+  `/3/account/${account_id}/rated/${media}?api_key=${key}&session_id=${token}&sort_by=created_at.asc&page=1`;
 
 //
 //**** Movies & TV-Series lists **** //

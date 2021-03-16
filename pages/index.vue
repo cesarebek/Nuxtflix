@@ -2,7 +2,7 @@
   <div class="bg-netflixBg">
     <Swiper :titles="popularMovies" />
     <main
-      class="container mx-auto text-white font-semibold text-lg mt-12 px-2 bg-netflixBg"
+      class="container mx-auto text-white font-semibold text-lg mt-12 px-2 bg-netflixBg space-y-10"
     >
       <!-- Slider 1 ~ Popular Movies -->
 

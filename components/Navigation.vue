@@ -1,7 +1,7 @@
 <template>
   <div class="bg-gradient-to-b from-netflixNavGrd1 to-netflixNavGrd2">
     <header
-      class="flex justify-between items-center py-5 container mx-auto h-18 px-4 sm:px-0"
+      class="flex justify-between items-center py-5 container mx-auto h-18 px-4 sm:px-2"
     >
       <div class="flex space-x-10 flex-shrink-0">
         <nuxt-link to="/">
@@ -47,12 +47,23 @@
             />
           </svg>
         </div>
-        <div
-          v-if="isLogged"
-          @click="logout"
-          class="rounded-full w-8 h-8 bg-white flex items-center justify-center cursor-pointer"
-        >
-          <fa icon="user" />
+        <div class="relative hidden md:block">
+          <button
+            v-if="isLogged"
+            @click="optionOpen = !optionOpen"
+            class="rounded-full w-8 h-8 bg-white flex items-center justify-center cursor-pointer "
+          >
+            <fa icon="user" />
+          </button>
+          <div
+            class="origin-top-right absolute right-0 bg-netflixNavGrd1 text-white flex flex-col p-2 m-1 z-10 rounded-md"
+            v-if="optionOpen && isLogged"
+          >
+            <NuxtLink to="/dushboard/favorites?type=movies">Favorites</NuxtLink>
+            <NuxtLink to="/dushboard/favorites?type=movies">Rated</NuxtLink>
+            <NuxtLink to="/dushboard/favorites?type=movies">watchlist</NuxtLink>
+            <button @click="logout">Logout</button>
+          </div>
         </div>
         <NuxtLink
           to="/auth"
@@ -85,12 +96,14 @@ export default {
         { id: 3, name: "Actors", slug: "/actors" }
       ],
       searchOpen: false,
+      optionOpen: false,
       boxInput: ""
     };
   },
   methods: {
     async logout() {
       await this.$store.dispatch("authentication/logout");
+      this.$router.push("/");
     }
   },
   watch: {
