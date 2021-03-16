@@ -1,8 +1,15 @@
 // import Cookie from "js-cookie";
-import { reqToken, validateToken, createSession, deleteSession } from "@/api";
+import {
+  reqToken,
+  validateToken,
+  createSession,
+  deleteSession,
+  accountDetails
+} from "@/api";
 
 export const state = () => ({
-  token: null
+  token: null,
+  user_id: null
 });
 
 export const getters = {
@@ -11,12 +18,16 @@ export const getters = {
   },
   isLogged(state) {
     return !!state.token;
+  },
+  userID(state) {
+    return state.user_id;
   }
 };
 
 export const mutations = {
-  setToken(state, token) {
-    state.token = token;
+  setToken(state, auth) {
+    state.token = auth.token;
+    state.user_id = auth.id;
   }
 };
 export const actions = {
@@ -33,11 +44,14 @@ export const actions = {
     const session = await this.$axios.$post(createSession(), {
       request_token: validationToken.request_token
     });
+    const userInfo = await this.$axios.$get(accountDetails(session.session_id));
     //Storing Session ID with Cookies (localStorage is not supported for SSR)
     this.$cookies.set("token", session.session_id);
+    this.$cookies.set("user_id", userInfo.id);
     //Saving the Session ID in VUEX Store
-    commit("setToken", session.session_id);
+    commit("setToken", { token: session.session_id, id: userInfo.id });
   },
+
   async logout({ getters, commit }) {
     const token = getters.token;
     const logout = await this.$axios.$delete(deleteSession(), {
@@ -45,10 +59,11 @@ export const actions = {
     });
     console.log(logout);
     this.$cookies.remove("token");
-    commit("setToken", null);
+    this.$cookies.remove("user_id");
+    commit("setToken", { token: null, id: null });
   },
-  tryLogin({ commit }, token) {
+  tryLogin({ commit }, payload) {
     //Setting the token to VUEX Store
-    commit("setToken", token);
+    commit("setToken", payload);
   }
 };

@@ -51,7 +51,7 @@
       <div class="space-y-2">
         <p
           v-for="keyword in keywords.keywords"
-          @click="searchByKeyword(keyword.name)"
+          @click="searchByKeyword(keyword.id)"
           :key="keyword.id"
           class="bg-gray-600 text-gray-200 inline-block p-1 rounded-md font-medium mr-2 cursor-pointer"
         >

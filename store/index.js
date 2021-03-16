@@ -15,8 +15,12 @@ export const actions = {
       popular: resActors.results
     });
     if (app.$cookies.get("token")) {
-      const token = app.$cookies.get("token");
-      dispatch("authentication/tryLogin", token);
+      const userToken = app.$cookies.get("token");
+      const userId = app.$cookies.get("user_id");
+      dispatch("authentication/tryLogin", {
+        token: userToken,
+        id: userId
+      });
     }
   }
 };

@@ -70,7 +70,7 @@ export default {
       }
     },
     showDetails(id) {
-      this.$router.push(`/series/${id}`);
+      this.$router.push({ path: `/series/${id}`, query: { type: "tv" } });
     }
   }
 };

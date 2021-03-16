@@ -1,11 +1,10 @@
 <template>
   <div class="bg-netflixBg">
-    <VideoSection
-      @close-movie="openTrailer = !openTrailer"
-      v-if="openTrailer"
+    <MainBanner
+      :details="details"
+      @open-trailer="openTrailer = !openTrailer"
       :videos="videos"
     />
-    <MainBanner :details="details" @open-trailer="openTrailer = !openTrailer" />
     <main class="divide-y px-5">
       <client-only>
         <section class="container mx-auto py-10">
@@ -24,7 +23,6 @@
 
 <script>
 import { movieDetails, movieVideos } from "~/api";
-import VideoSection from "@/components/contentDetails/VideoSection";
 import ContentCredits from "@/components/contentDetails/ContentCredits";
 import ContentRecommendations from "~/components/contentDetails/ContentRecommendations.vue";
 import GenericInfo from "~/components/contentDetails/MovieInfo.vue";
@@ -32,7 +30,6 @@ import MainBanner from "~/components/contentDetails/MainBanner.vue";
 
 export default {
   components: {
-    VideoSection,
     ContentCredits,
     ContentRecommendations,
     GenericInfo,

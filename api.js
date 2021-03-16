@@ -19,7 +19,19 @@ export const deleteSession = () => `/3/authentication/session?api_key=${key}`;
 //
 //User Authenticated Details
 export const accountDetails = session_id =>
-  `https://api.themoviedb.org/3/account?api_key=${key}&session_id=${session_id}`;
+  `/3/account?api_key=${key}&session_id=${session_id}`;
+//Account states for each title
+export const titleStates = (media, title_id, token) =>
+  `/3/${media}/${title_id}/account_states?api_key=${key}&session_id=${token}`;
+//Mark as Favorite
+export const markFavorite = (account_id, token) =>
+  `3/account/${account_id}/favorite?api_key=${key}&session_id=${token}`;
+//Add to Watchlist
+export const addWatchlist = (account_id, token) =>
+  `3/account/${account_id}/watchlist?api_key=${key}&session_id=${token}`;
+//Rate
+export const rateTitle = (media, title_id, token) =>
+  `/3/${media}/${title_id}/rating?api_key=${key}&session_id=${token}`;
 
 //
 //**** Movies & TV-Series lists **** //

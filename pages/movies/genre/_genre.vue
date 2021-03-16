@@ -70,7 +70,7 @@ export default {
       }
     },
     showDetails(id) {
-      this.$router.push(`/movies/${id}`);
+      this.$router.push({ path: `/movies/${id}`, query: { type: "movie" } });
     }
   }
 };

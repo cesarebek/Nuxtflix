@@ -14,37 +14,7 @@
         <p class="text-white font-bold text-3xl mt-3 sm:hidden">
           {{ actor.name }}
         </p>
-        <div class="self-start text-white space-y-2 text-sm mt-4 mb-10">
-          <h1 class="text-xl text-gray-200 font-medium mb-2">
-            Personal Info
-          </h1>
-          <div>
-            <p>Known For</p>
-            <p class="text-gray-500">{{ actor.known_for_department }}</p>
-          </div>
-          <div>
-            <p>Known Credits</p>
-            <p class="text-gray-500">{{ credits.cast.length }}</p>
-          </div>
-          <div>
-            <p>Gender</p>
-            <p class="text-gray-500">{{ gender }}</p>
-          </div>
-          <div>
-            <p>Birthdate</p>
-            <p class="text-gray-500">
-              {{ actor.birthdate ? actor.birthdate : "-" }}
-            </p>
-          </div>
-          <div>
-            <p>Place of Birth</p>
-            <p class="text-gray-500">{{ actor.place_of_birth }}</p>
-          </div>
-          <div>
-            <p>Also Known As</p>
-            <p class="text-gray-500">{{ actor.also_known_as[10] }}</p>
-          </div>
-        </div>
+        <PersonalInfo :actor="actor" :creditsCount="creditsCount" />
       </div>
       <div class="w-full px-5 sm:w-3/4 sm:px-8 py-2">
         <!-- User's Info -->
@@ -102,10 +72,11 @@ import {
   actorCombinedCredits
 } from "@/api";
 import Slider from "@/components/slot_components/Slider";
+import PersonalInfo from "@/components/actorDetails/PersonalInfo";
 import ActingTable from "@/components/actorDetails/ActingTable";
 
 export default {
-  components: { Slider, ActingTable },
+  components: { Slider, ActingTable, PersonalInfo },
   async asyncData({ $axios, route }) {
     try {
       const id = route.params.actor;
@@ -119,11 +90,11 @@ export default {
     }
   },
   computed: {
+    creditsCount() {
+      return this.credits.cast.length;
+    },
     profileImg() {
       return `https://image.tmdb.org/t/p/w500${this.actor.profile_path}`;
-    },
-    gender() {
-      return this.actor.gender === 1 ? "Female" : "Male";
     }
   }
 };

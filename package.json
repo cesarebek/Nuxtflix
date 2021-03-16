@@ -17,7 +17,9 @@
     "js-cookie": "^2.2.1",
     "lodash": "^4.17.21",
     "nuxt": "^2.14.6",
+    "v-tooltip": "^2.1.2",
     "validator": "^13.5.2",
+    "vue-star-rating": "^1.7.0",
     "vueperslides": "^2.13.0"
   },
   "devDependencies": {
