@@ -1,7 +1,9 @@
 <template>
   <div>
     <Navigation />
-    <Nuxt />
+    <div class="bg-netflixBg min-h-screen">
+      <Nuxt />
+    </div>
     <TheFooter />
   </div>
 </template>
