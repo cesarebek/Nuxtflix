@@ -19,7 +19,7 @@
       <div class="w-full px-5 sm:w-3/4 sm:px-8 py-2">
         <!-- User's Info -->
         <div class="text-white mb-5">
-          <h1 class="text-3xl font-bold mb-10 hidden sm:visible">
+          <h1 class="text-3xl font-bold mb-10 hidden sm:block">
             {{ actor.name }}
           </h1>
 

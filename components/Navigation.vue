@@ -59,10 +59,24 @@
             class="origin-top-right absolute right-0 bg-netflixNavGrd1 text-white flex flex-col p-2 m-1 z-10 rounded-md"
             v-if="optionOpen && isLogged"
           >
-            <NuxtLink to="/dushboard/favorites?type=movies">Favorites</NuxtLink>
-            <NuxtLink to="/dushboard/favorites?type=movies">Rated</NuxtLink>
-            <NuxtLink to="/dushboard/favorites?type=movies">watchlist</NuxtLink>
-            <button @click="logout">Logout</button>
+            <ul class="text-lg">
+              <NuxtLink
+                class="hover:underline"
+                to="/dushboard/favorites?type=movies"
+                >Favorites</NuxtLink
+              >
+              <NuxtLink
+                class="hover:underline"
+                to="/dushboard/rated?type=movies"
+                >Rated</NuxtLink
+              >
+              <NuxtLink
+                class="hover:underline"
+                to="/dushboard/watchlist?type=movies"
+                >Watchlist</NuxtLink
+              >
+              <button class="hover:underline" @click="logout">Logout</button>
+            </ul>
           </div>
         </div>
         <NuxtLink

@@ -21,7 +21,7 @@
         </div>
         <div class="px-5 text-white text-shadow-lg">
           <h1 class="text-3xl font-extrabold">
-            {{ authorName }}
+            {{ details.title || details.name }}
             <span v-if="details.release_date" class="font-normal text-gray-400"
               >({{ release }})</span
             >
@@ -40,7 +40,7 @@
               </li>
             </ul>
             <p class="text-xl">&#8226;</p>
-            <p>{{ titleRuntime }}m</p>
+            <p>{{ details.runtime || details.episode_run_time[0] }}m</p>
           </div>
 
           <!-- User Interactivity -->
@@ -64,7 +64,6 @@
 <script>
 import UserTools from "@/components/contentDetails/UserTools";
 import VideoSection from "@/components/contentDetails/VideoSection";
-import _ from "lodash";
 
 export default {
   components: { UserTools, VideoSection },
@@ -91,12 +90,6 @@ export default {
     },
     release() {
       return this.details.release_date.split("-")[0];
-    },
-    authorName() {
-      return _.get(this.details, "title" || "name", "Name not Available");
-    },
-    titleRuntime() {
-      return _.get(this.details, "runtime" || "episode_run_time[0]", "0");
     }
   },
   methods: {

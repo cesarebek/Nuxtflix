@@ -6,14 +6,14 @@
       :videos="videos"
     />
     <main class="divide-y px-5">
-      <section class="container mx-auto py-10">
+      <!-- <section class="container mx-auto py-10">
         <MovieInfo
           :id="id"
           :status="details.status"
           :origLang="details.original_language"
           :revenue="details.revenue"
         />
-      </section>
+      </section> -->
       <section class="container mx-auto py-10">
         <p class="text-3xl text-white font-bold mb-3">Cast</p>
         <ContentCredits :type="type" :id="id" />

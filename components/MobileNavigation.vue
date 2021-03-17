@@ -20,6 +20,32 @@
         >
           {{ nav.name }}
         </NuxtLink>
+        <div v-if="isLogged" class="flex flex-col items-center space-y-4">
+          <NuxtLink
+            to="/dushboard/favorites?type=movies"
+            class="text-white text-lg font-light transform duration-500 cursor-pointer hover:text-red-600"
+          >
+            My Favorites
+          </NuxtLink>
+          <NuxtLink
+            to="/dushboard/rated?type=movies"
+            class="text-white text-lg font-light transform duration-500 cursor-pointer hover:text-red-600"
+          >
+            My Ratings
+          </NuxtLink>
+          <NuxtLink
+            to="/dushboard/watchlist?type=movies"
+            class="text-white text-lg font-light transform duration-500 cursor-pointer hover:text-red-600"
+          >
+            My Watchlist
+          </NuxtLink>
+          <button
+            @click="logout"
+            class="bg-red-600 text-white px-5 py-1 rounded-sm cursor-pointer"
+          >
+            Logout
+          </button>
+        </div>
         <NuxtLink
           to="/auth"
           v-if="!isLogged"
@@ -58,8 +84,12 @@ export default {
   },
   methods: {
     toggle() {
-      console.log("hey");
       this.menuOpen = !this.menuOpen;
+    },
+    async logout() {
+      await this.$store.dispatch("authentication/logout");
+      this.toggle;
+      this.$router.push("/");
     }
   }
 };

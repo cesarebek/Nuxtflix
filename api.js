@@ -41,6 +41,9 @@ export const watchlist = (account_id, media, token) =>
 //Get Rating Titles
 export const titleRating = (account_id, media, token) =>
   `/3/account/${account_id}/rated/${media}?api_key=${key}&session_id=${token}&sort_by=created_at.asc&page=1`;
+//Remove Rate
+export const removeRating = (id, media, token) =>
+  `/3/${media}/${id}/rating?api_key=${key}&session_id=${token}`;
 
 //
 //**** Movies & TV-Series lists **** //

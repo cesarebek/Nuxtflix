@@ -2,13 +2,22 @@
   <div class="bg-netflixBg px-2">
     <section class="container mx-auto text-white min-h-screen">
       <div class="flex space-x-2 items-baseline">
-        <p class="font-semibold text-3xl">My Ratings</p>
+        <p class="font-semibold text-3xl">My Favorites</p>
         <p @click="queryMovies" class="hover:underline cursor-pointer">
           Movies
         </p>
         <p @click="querySeries" class="hover:underline cursor-pointer">Tv</p>
       </div>
-      <div v-if="$fetchState.pending" class="text-white">LOADING</div>
+      <!-- Loading -->
+      <div v-if="$fetchState.pending">
+        <div
+          v-for="i in 3"
+          :key="i"
+          class="mt-4 h-56 bg-gray-900 rounded-md overflow-hidden"
+        >
+          <div class="h-full w-40 bg-gray-800 "></div>
+        </div>
+      </div>
       <main v-else>
         <div
           v-for="favorite in favorites.results"
@@ -24,7 +33,7 @@
             <p class="text-2xl font-semibold py-1">
               {{ favorite.title || favorite.name }}
             </p>
-            <p>{{ favorite.release_date }}</p>
+            <p>{{ favorite.release_date || favorite.first_air_date }}</p>
             <p class="overflow-y-auto h-1/2 text-sm">{{ favorite.overview }}</p>
 
             <div @click="removeFavorite(favorite.id)" class="flex items-center">
@@ -46,6 +55,7 @@
 import { favoriteTitles, markFavorite } from "@/api";
 
 export default {
+  middleware: "auth",
   data() {
     return {
       type: null,
