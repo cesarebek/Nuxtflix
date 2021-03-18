@@ -9,7 +9,9 @@ This Web App is powered by **Nuxt JS** a sweet Vue JS framework.
 1. **Clone** or **Download** this repository;
 2. Open the project in your favorite code editor;
 3. Open the editor terminal and write: **npm install**;
-4. Finally, always in the terminal, **npm run dev**.
+4. Go to https://www.themoviedb.org/settings/api, Signin o Signup in order to obtain your API KEY;
+5. Create a fresh **.env** file and add a new environment variable: **TMDB_KEY=xxxxxxxx**;
+6. Finally, always in the terminal, **npm run dev**.
 
 # Screenshots
 
