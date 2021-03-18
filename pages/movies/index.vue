@@ -63,12 +63,23 @@ import GenresSelector from "@/components/movie_tv_page/GenresSelector";
 
 export default {
   components: { Slider, GenresSelector },
-  async asyncData({ $axios }) {
-    const popular = await $axios.$get(popularTitles("movie"));
-    const nowPlaying = await $axios.$get(nowPlayingMovies());
-    const topRated = await $axios.$get(topRatedTitles("movie"));
-    const genres = await $axios.$get(titlesGenres("movie"));
-    return { popular, nowPlaying, topRated, genres };
+  async asyncData({ $axios, error }) {
+    try {
+      const popular = await $axios.$get(popularTitles("movie"));
+      const nowPlaying = await $axios.$get(nowPlayingMovies());
+      const topRated = await $axios.$get(topRatedTitles("movie"));
+      const genres = await $axios.$get(titlesGenres("movie"));
+      return { popular, nowPlaying, topRated, genres };
+    } catch (e) {
+      if (e.response) {
+        return error({ code: e.response.status, message: e.message });
+      } else {
+        return error({
+          code: 500,
+          message: "Check your internet connection and/or refresh the page"
+        });
+      }
+    }
   },
   methods: {
     filterByGenre(genre) {

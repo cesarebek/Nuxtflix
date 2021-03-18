@@ -60,11 +60,22 @@ export default {
       const genre_id = this.$route.params.genre;
       //Check for CurrentPage based on TotalPages
       if (this.page < this.pages) {
-        this.page++;
-        const nextPage = await this.$axios.$get(
-          searchByGenre("movie", this.page, genre_id)
-        );
-        return (this.titles = [...this.titles, ...nextPage.results]);
+        try {
+          this.page++;
+          const nextPage = await this.$axios.$get(
+            searchByGenre("movie", this.page, genre_id)
+          );
+          return (this.titles = [...this.titles, ...nextPage.results]);
+        } catch (e) {
+          if (e.response) {
+            return $nuxt.error({ code: e.response.status, message: e.message });
+          } else {
+            return $nuxt.error({
+              code: 500,
+              message: "Check your internet connection and/or refresh the page"
+            });
+          }
+        }
       } else {
         return console.log("end page");
       }

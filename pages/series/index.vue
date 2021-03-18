@@ -61,12 +61,23 @@ import GenresSelector from "~/components/movie_tv_page/GenresSelector.vue";
 
 export default {
   components: { Slider, GenresSelector },
-  async asyncData({ $axios }) {
-    const popular = await $axios.$get(popularTitles("tv"));
-    const airingToday = await $axios.$get(airingSeries());
-    const topRated = await $axios.$get(topRatedTitles("tv"));
-    const genres = await $axios.$get(titlesGenres("tv"));
-    return { popular, airingToday, topRated, genres };
+  async asyncData({ $axios, error }) {
+    try {
+      const popular = await $axios.$get(popularTitles("tv"));
+      const airingToday = await $axios.$get(airingSeries());
+      const topRated = await $axios.$get(topRatedTitles("tv"));
+      const genres = await $axios.$get(titlesGenres("tv"));
+      return { popular, airingToday, topRated, genres };
+    } catch (e) {
+      if (e.response) {
+        return error({ code: e.response.status, message: e.message });
+      } else {
+        return error({
+          code: 500,
+          message: "Check your internet connection and/or refresh the page"
+        });
+      }
+    }
   },
   methods: {
     filterByGenre(genre) {

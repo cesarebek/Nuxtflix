@@ -6,14 +6,6 @@
       :videos="videos"
     />
     <main class="divide-y px-5">
-      <!-- <section class="container mx-auto py-10">
-        <MovieInfo
-          :id="id"
-          :status="details.status"
-          :origLang="details.original_language"
-          :revenue="details.revenue"
-        />
-      </section> -->
       <section class="container mx-auto py-10">
         <p class="text-3xl text-white font-bold mb-3">Cast</p>
         <ContentCredits :type="type" :id="id" />
@@ -46,7 +38,7 @@ export default {
       openTrailer: false
     };
   },
-  async asyncData({ $axios, route }) {
+  async asyncData({ $axios, route, error }) {
     try {
       const id = route.params.movie;
       const type = route.query.type;
@@ -54,7 +46,14 @@ export default {
       const videos = await $axios.$get(movieVideos(type, id));
       return { details, videos };
     } catch (e) {
-      console.log(e);
+      if (e.response) {
+        return error({ code: e.response.status, message: e.message });
+      } else {
+        return error({
+          code: 500,
+          message: "Check your internet connection and/or refresh the page"
+        });
+      }
     }
   },
   computed: {

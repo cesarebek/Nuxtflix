@@ -77,7 +77,7 @@ import ActingTable from "@/components/actorDetails/ActingTable";
 
 export default {
   components: { Slider, ActingTable, PersonalInfo },
-  async asyncData({ $axios, route }) {
+  async asyncData({ $axios, route, error }) {
     try {
       const id = route.params.actor;
       const actor = await $axios.$get(actorDetails(id));
@@ -86,7 +86,14 @@ export default {
       const credits = await $axios.$get(actorCombinedCredits(id));
       return { actor, movies, series, credits };
     } catch (e) {
-      console.log(e);
+      if (e.response) {
+        return error({ code: e.response.status, message: e.message });
+      } else {
+        return error({
+          code: 500,
+          message: "Check your internet connection and/or refresh the page"
+        });
+      }
     }
   },
   computed: {

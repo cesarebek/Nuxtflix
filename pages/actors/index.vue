@@ -42,19 +42,27 @@ export default {
       page: 1
     };
   },
-  async asyncData({ $axios }) {
-    const response = await $axios.$get(popularActors(1));
-    const actors = response.results;
-    const pages = response.total_pages;
-    return { actors, pages };
+  async asyncData({ $axios, error }) {
+    try {
+      const response = await $axios.$get(popularActors(1));
+      const actors = response.results;
+      const pages = response.total_pages;
+      return { actors, pages };
+    } catch (e) {
+      error({ message: e.message });
+    }
   },
   methods: {
     async loadMore() {
       //Check for CurrentPage based on TotalPages
       if (this.page < this.pages) {
         this.page++;
-        const nextPage = await this.$axios.$get(popularActors(this.page));
-        return (this.actors = [...this.actors, ...nextPage.results]);
+        try {
+          const nextPage = await this.$axios.$get(popularActors(this.page));
+          return (this.actors = [...this.actors, ...nextPage.results]);
+        } catch (e) {
+          $nuxt.error({ code: e.code, message: e.message });
+        }
       } else {
         return console.log("end page");
       }

@@ -74,7 +74,14 @@ export default {
         watchlist(this.userId, this.type, this.token)
       );
     } catch (e) {
-      console.log(e);
+      if (e.response) {
+        return $nuxt.error({ code: e.response.status, message: e.message });
+      } else {
+        return $nuxt.error({
+          code: 500,
+          message: "Check your internet connection and/or refresh the page"
+        });
+      }
     }
   },
   computed: {

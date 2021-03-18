@@ -5,9 +5,7 @@
       backgroundImage: `url(${backgroundCover})`
     }"
   >
-    <div class="min-h-screen">
-      <Nuxt />
-    </div>
+    <div class="min-h-screen"></div>
     <TheFooter />
   </div>
 </template>
