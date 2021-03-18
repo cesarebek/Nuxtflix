@@ -91,3 +91,4 @@ sw.*
 
 # environment variables
 .env
+.vercel

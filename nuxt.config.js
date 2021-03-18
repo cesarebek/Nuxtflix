@@ -1,7 +1,6 @@
 require("dotenv").config();
 
 export default {
-  mode: "universa",
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     title: "Nuxtflix",
@@ -72,11 +71,6 @@ export default {
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {
     baseURL: "https://api.themoviedb.org"
-    // headers: {
-    //   common: {
-    //     authorization: `Bearer ${process.env.TMDB_KEY}`
-    //   }
-    // }
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
