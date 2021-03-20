@@ -73,6 +73,10 @@ export default {
     baseURL: "https://api.themoviedb.org"
   },
 
+  env: {
+    TMDB_KEY: process.env.TMDB_KEY
+  },
+
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {}
 };
