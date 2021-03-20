@@ -5,47 +5,48 @@
       class="container mx-auto text-white font-semibold text-lg mt-12 px-2 bg-netflixBg space-y-10"
     >
       <!-- Slider 1 ~ Popular Movies -->
+      <client-only>
+        <slider>
+          <template #title>
+            <h1>Popular Movies</h1>
+          </template>
+          <MovieCard
+            v-for="movie in popularMovies"
+            :key="movie.id"
+            :path="movie.poster_path"
+            :id="movie.id"
+          />
+        </slider>
 
-      <slider>
-        <template #title>
-          <h1>Popular Movies</h1>
-        </template>
-        <MovieCard
-          v-for="movie in popularMovies"
-          :key="movie.id"
-          :path="movie.poster_path"
-          :id="movie.id"
-        />
-      </slider>
+        <!-- Slider 2 ~ Popular Tv Shows -->
 
-      <!-- Slider 2 ~ Popular Tv Shows -->
+        <slider>
+          <template v-slot:title>
+            <h1>Popular Tv Shows</h1>
+          </template>
+          <SerieCard
+            v-for="serie in popularSeries"
+            :key="serie.id"
+            :path="serie.poster_path"
+            :id="serie.id"
+          />
+        </slider>
 
-      <slider>
-        <template v-slot:title>
-          <h1>Popular Tv Shows</h1>
-        </template>
-        <SerieCard
-          v-for="serie in popularSeries"
-          :key="serie.id"
-          :path="serie.poster_path"
-          :id="serie.id"
-        />
-      </slider>
+        <!-- Slider 3 ~ Popular Actors -->
 
-      <!-- Slider 3 ~ Popular Actors -->
-
-      <slider>
-        <template v-slot:title>
-          <h1>Actors of the moment</h1>
-        </template>
-        <ActorCard
-          v-for="actor in popularActors"
-          :key="actor.id"
-          :path="actor.profile_path"
-          :name="actor.name"
-          :id="actor.id"
-        />
-      </slider>
+        <slider>
+          <template v-slot:title>
+            <h1>Actors of the moment</h1>
+          </template>
+          <ActorCard
+            v-for="actor in popularActors"
+            :key="actor.id"
+            :path="actor.profile_path"
+            :name="actor.name"
+            :id="actor.id"
+          />
+        </slider>
+      </client-only>
     </main>
   </div>
 </template>
