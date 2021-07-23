@@ -90,15 +90,15 @@ export default {
   async fetch() {
     try {
       this.page = 1;
-      const titlesResponse = await this.$axios.$get(
-        multipleSearch(this.query, this.page++)
-      );
-      const keysResponse = await this.$axios.$get(
-        queryKeywordBySearch(this.query)
-      );
-      this.data = titlesResponse.results;
-      this.pages = titlesResponse.total_pages;
-      this.keywords = keysResponse.results;
+
+      const responses = await Promise.all([
+        this.$axios.$get(multipleSearch(this.query, this.page++)),
+        this.$axios.$get(queryKeywordBySearch(this.query))
+      ]);
+
+      this.data = responses[0].results;
+      this.pages = responses[0].total_pages;
+      this.keywords = responses[1].results;
     } catch (e) {
       if (e.response) {
         return $nuxt.error({ code: e.response.status, message: e.message });

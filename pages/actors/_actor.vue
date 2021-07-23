@@ -80,11 +80,19 @@ export default {
   async asyncData({ $axios, route, error }) {
     try {
       const id = route.params.actor;
-      const actor = await $axios.$get(actorDetails(id));
-      const movies = await $axios.$get(actorMovies(id));
-      const series = await $axios.$get(actorSeries(id));
-      const credits = await $axios.$get(actorCombinedCredits(id));
-      return { actor, movies, series, credits };
+      const responses = await Promise.all([
+        $axios.$get(actorDetails(id)),
+        $axios.$get(actorMovies(id)),
+        $axios.$get(actorSeries(id)),
+        $axios.$get(actorCombinedCredits(id))
+      ]);
+
+      return {
+        actor: responses[0],
+        movies: responses[1],
+        series: responses[2],
+        credits: responses[3]
+      };
     } catch (e) {
       if (e.response) {
         return error({ code: e.response.status, message: e.message });

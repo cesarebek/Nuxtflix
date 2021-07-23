@@ -63,11 +63,18 @@ export default {
   components: { Slider, GenresSelector },
   async asyncData({ $axios, error }) {
     try {
-      const popular = await $axios.$get(popularTitles("tv"));
-      const airingToday = await $axios.$get(airingSeries());
-      const topRated = await $axios.$get(topRatedTitles("tv"));
-      const genres = await $axios.$get(titlesGenres("tv"));
-      return { popular, airingToday, topRated, genres };
+      const responses = await Promise.all([
+        $axios.$get(popularTitles("tv")),
+        $axios.$get(airingSeries()),
+        $axios.$get(topRatedTitles("tv")),
+        $axios.$get(titlesGenres("tv"))
+      ]);
+      return {
+        popular: responses[0],
+        airingToday: responses[1],
+        topRated: responses[2],
+        genres: responses[3]
+      };
     } catch (e) {
       if (e.response) {
         return error({ code: e.response.status, message: e.message });

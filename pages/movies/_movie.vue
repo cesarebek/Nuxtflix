@@ -42,9 +42,11 @@ export default {
     try {
       const id = route.params.movie;
       const type = route.query.type;
-      const details = await $axios.$get(movieDetails(type, id));
-      const videos = await $axios.$get(movieVideos(type, id));
-      return { details, videos };
+      const responses = await Promise.all([
+        $axios.$get(movieDetails(type, id)),
+        $axios.$get(movieVideos(type, id))
+      ]);
+      return { details: responses[0], videos: responses[1] };
     } catch (e) {
       if (e.response) {
         return error({ code: e.response.status, message: e.message });
